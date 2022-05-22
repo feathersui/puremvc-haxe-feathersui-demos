@@ -73,7 +73,7 @@ class MainScreenMediator extends Mediator implements IMediator {
 		mainScreen.myText1 = localeProxy.getText(LocaleKeyEnum.HOW_TO_READ_CONFIG_VALUES);
 
 		var myHtmlText = "";
-		myHtmlText += '<b>simple value:</b> configProxy.getValue( ConfigKeyEnum.KEY_NAME ) = ${configProxy.getValue(ConfigKeyEnum.OTHER_KEY_NAME)}<br><br>';
+		myHtmlText += '<b>simple value:</b> configProxy.getValue( ConfigKeyEnum.KEY_NAME ) = ${configProxy.getValue(ConfigKeyEnum.KEY_NAME)}<br><br>';
 		myHtmlText += '<b>long text value:</b> configProxy.getValue( ConfigKeyEnum.OTHER_KEY_NAME ) = ${configProxy.getValue(ConfigKeyEnum.OTHER_KEY_NAME)}<br><br>';
 		myHtmlText += '<b>number value:</b> configProxy.getNumber( ConfigKeyEnum.NUMBER_TEST ) = ${configProxy.getNumber(ConfigKeyEnum.NUMBER_TEST)}<br><br>';
 		myHtmlText += '<b>boolean value:</b> configProxy.getBoolean( ConfigKeyEnum.BOOLEAN_TEST ) = ${configProxy.getBoolean(ConfigKeyEnum.BOOLEAN_TEST)}<br><br>';
