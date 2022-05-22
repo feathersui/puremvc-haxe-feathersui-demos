@@ -43,9 +43,9 @@ class ConfigProxy extends Proxy implements IResourceProxy {
 		setData({});
 	}
 
-	/*
-	 * Load the xml file, this method is called by StartupMonitorProxy
-	 */
+	/**
+		Load the xml file, this method is called by StartupMonitorProxy
+	**/
 	public function load():Void {
 		// create a worker who will go get some data
 		// pass it a reference to this proxy so the delegate knows where to return the data
@@ -54,11 +54,11 @@ class ConfigProxy extends Proxy implements IResourceProxy {
 		delegate.load();
 	}
 
-	/*
-	 * This is called when the delegate receives a result from the service
-	 * 
-	 * @param rpcEvent
-	 */
+	/**
+		This is called when the delegate receives a result from the service
+
+		@param rpcEvent
+	**/
 	public function result(result:Xml):Void {
 		// call the helper class for parse the XML data
 		XmlResource.parse(data, result);
@@ -70,52 +70,52 @@ class ConfigProxy extends Proxy implements IResourceProxy {
 		sendNotification(ConfigProxy.LOAD_SUCCESSFUL);
 	}
 
-	/*
-	 * This is called when the delegate receives a fault from the service
-	 * 
-	 * @param rpcEvent
-	 */
+	/**
+		This is called when the delegate receives a fault from the service
+
+		@param rpcEvent
+	**/
 	public function fault(rpcEvent:Dynamic):Void {
 		// send the failed notification
 		sendNotification(ConfigProxy.LOAD_FAILED, ConfigProxy.ERROR_LOAD_FILE);
 	}
 
 	/**
-	 * Get the config value
-	 * 
-	 * @param key the key to read 
-	 * @return String the key value stored in internal object
-	 */
+		Get the config value
+
+		@param key the key to read 
+		@return String the key value stored in internal object
+	**/
 	public function getValue(key:String):String {
 		return Reflect.field(data, key.toLowerCase());
 	}
 
 	/**
-	 * Get the config numeric value 
-	 * 
-	 * @param key the key to read 
-	 * @return Number the key value stored in internal object
-	 */
+		Get the config numeric value 
+
+		@param key the key to read 
+		@return Number the key value stored in internal object
+	**/
 	public function getNumber(key:String):Float {
 		return Std.parseFloat(Reflect.field(data, key.toLowerCase()));
 	}
 
 	/**
-	 * Get the config boolean value 
-	 * 
-	 * @param key the key to read 
-	 * @return Boolean the key value stored in internal object
-	 */
+		Get the config boolean value 
+
+		@param key the key to read 
+		@return Boolean the key value stored in internal object
+	**/
 	public function getBoolean(key:String):Bool {
 		return Reflect.field(data, key.toLowerCase()) != null ? Reflect.field(data, key.toLowerCase()).toLowerCase() == "true" : false;
 	}
 
 	/**
-	 * Set the config value if isn't defined
-	 * 
-	 * @param key the key to set
-	 * @param value the value
-	 */
+		Set the config value if isn't defined
+
+		@param key the key to set
+		@param value the value
+	**/
 	public function setDefaultValue(key:String, value:Any):Void {
 		if (Reflect.field(data, key.toLowerCase()) == null) {
 			Reflect.setField(data, key.toLowerCase(), value);

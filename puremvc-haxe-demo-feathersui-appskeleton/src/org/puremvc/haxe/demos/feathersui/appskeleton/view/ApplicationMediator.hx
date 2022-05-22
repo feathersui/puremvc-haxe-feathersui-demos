@@ -44,7 +44,7 @@ class ApplicationMediator extends Mediator implements IMediator {
 		The `ApplicationMediator` constructor also registers the 
 		Mediators for the view components created by the application.
 
-		@param object the viewComponent (the ApplicationSkeleton instance in this case)
+		@param object the viewComponent (the AppSkeleton instance in this case)
 	**/
 	public function new(viewComponent:AppSkeleton) {
 		// pass the viewComponent to the superclass where
@@ -60,13 +60,13 @@ class ApplicationMediator extends Mediator implements IMediator {
 	}
 
 	/**
-	 * List all notifications this Mediator is interested in.
-	 * <P>
-	 * Automatically called by the framework when the mediator
-	 * is registered with the view.</P>
-	 * 
-	 * @return Array the list of Nofitication names
-	 */
+		List all notifications this Mediator is interested in.
+
+		Automatically called by the framework when the mediator
+		is registered with the view.
+
+		@return Array the list of Notification names
+	**/
 	override public function listNotificationInterests():Array<String> {
 		return [ApplicationFacade.VIEW_SPLASH_SCREEN, ApplicationFacade.VIEW_MAIN_SCREEN];
 	}
@@ -76,7 +76,7 @@ class ApplicationMediator extends Mediator implements IMediator {
 
 		Called by the framework when a notification is sent that
 		this mediator expressed an interest in when registered
-		(see `listNotificationInterests`.
+		(see `listNotificationInterests`).
 
 		@param INotification a notification 
 	**/

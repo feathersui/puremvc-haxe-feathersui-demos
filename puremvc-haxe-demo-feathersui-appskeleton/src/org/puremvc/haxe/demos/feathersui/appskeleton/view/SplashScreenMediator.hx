@@ -41,7 +41,7 @@ class SplashScreenMediator extends Mediator implements IMediator {
 		Automatically called by the framework when the mediator
 		is registered with the view.
 
-		@return Array the list of Nofitication names
+		@return Array the list of Notification names
 	**/
 	override public function listNotificationInterests():Array<String> {
 		return [
@@ -57,7 +57,7 @@ class SplashScreenMediator extends Mediator implements IMediator {
 
 		Called by the framework when a notification is sent that
 		this mediator expressed an interest in when registered
-		(see `listNotificationInterests`.</P>
+		(see `listNotificationInterests`).
 
 		@param INotification a notification 
 	**/
@@ -95,7 +95,7 @@ class SplashScreenMediator extends Mediator implements IMediator {
 		strongly typed reference with a meaningful
 		name.
 
-		@return SplashScreen the viewComponent cast to org.puremvc.as3.demos.flex.appskeleton.view.components.SplashScreen
+		@return SplashScreen the viewComponent cast to org.puremvc.haxe.demos.feathersui.appskeleton.view.components.SplashScreen
 	**/
 	private var splashScreen(get, never):SplashScreen;
 
