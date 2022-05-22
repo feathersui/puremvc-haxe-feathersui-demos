@@ -7,35 +7,28 @@
 
 package org.puremvc.haxe.demos.feathersui.appskeleton.model.business;
 
-import openfl.Assets;
-import openfl.events.ErrorEvent;
+import feathers.rpc.IResponder;
+import feathers.rpc.http.HTTPService;
 
 class LoadXMLDelegate {
-	private var resultCallback:(Xml) -> Void;
-	private var faultCallback:(Dynamic) -> Void;
-	private var assetID:String;
+	private var responder:IResponder;
+	private var service:HTTPService;
 
-	public function new(resultCallback:(Xml) -> Void, faultCallback:(ErrorEvent) -> Void, assetID:String) {
-		// store a reference to the proxy that created this delegate
-		this.resultCallback = resultCallback;
-		this.faultCallback = faultCallback;
+	public function new(responder:IResponder, url:String) {
+		// constructor will store a reference to the service we're going to call
+		this.service = new HTTPService();
+		this.service.resultFormat = HTTPService.RESULT_FORMAT_HAXE_XML;
+		this.service.url = url;
 
-		this.assetID = assetID;
+		// and store a reference to the proxy that created this delegate
+		this.responder = responder;
 	}
 
 	public function load():Void {
 		// call the service
-		Assets.loadText(assetID).onComplete(resultText -> {
-			var result:Xml = null;
-			try {
-				result = Xml.parse(resultText);
-			} catch (e:Dynamic) {
-				faultCallback(e);
-				return;
-			}
-			resultCallback(result);
-		}).onError(fault -> {
-			faultCallback(fault);
-		});
+		var token = service.send();
+
+		// notify this responder when the service call completes
+		token.addResponder(responder);
 	}
 }

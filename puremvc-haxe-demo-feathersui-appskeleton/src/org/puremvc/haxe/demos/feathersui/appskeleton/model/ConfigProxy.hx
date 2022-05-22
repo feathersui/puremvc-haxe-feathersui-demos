@@ -7,8 +7,8 @@
 
 package org.puremvc.haxe.demos.feathersui.appskeleton.model;
 
-import openfl.events.Event;
-import openfl.events.ErrorEvent;
+import feathers.rpc.IResponder;
+import feathers.rpc.events.ResultEvent;
 import org.puremvc.haxe.demos.feathersui.appskeleton.model.business.LoadXMLDelegate;
 import org.puremvc.haxe.demos.feathersui.appskeleton.model.helpers.XmlResource;
 import org.puremvc.haxe.patterns.proxy.Proxy;
@@ -16,7 +16,7 @@ import org.puremvc.haxe.patterns.proxy.Proxy;
 /**
 	A proxy for read the config file
 **/
-class ConfigProxy extends Proxy implements IResourceProxy {
+class ConfigProxy extends Proxy implements IResourceProxy implements IResponder {
 	public static final NAME = "ConfigProxy"; // Proxy name
 	public static final SEPARATOR = "/";
 
@@ -49,7 +49,7 @@ class ConfigProxy extends Proxy implements IResourceProxy {
 	public function load():Void {
 		// create a worker who will go get some data
 		// pass it a reference to this proxy so the delegate knows where to return the data
-		var delegate = new LoadXMLDelegate(this.result, this.fault, "assets/data/config.xml");
+		var delegate = new LoadXMLDelegate(this, "assets/data/config.xml");
 		// make the delegate do some work
 		delegate.load();
 	}
@@ -59,9 +59,9 @@ class ConfigProxy extends Proxy implements IResourceProxy {
 
 		@param rpcEvent
 	**/
-	public function result(result:Xml):Void {
+	public function result(rpcEvent:Dynamic):Void {
 		// call the helper class for parse the XML data
-		XmlResource.parse(data, result);
+		XmlResource.parse(data, cast(rpcEvent, ResultEvent).result);
 
 		// call the StartupMonitorProxy for notify that the resource is loaded
 		startupMonitorProxy.resourceComplete(ConfigProxy.NAME);

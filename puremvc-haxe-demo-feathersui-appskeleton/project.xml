@@ -13,10 +13,13 @@
 	<haxelib name="openfl"/>
 	<haxelib name="actuate"/>
 	<haxelib name="feathersui"/>
+	<haxelib name="feathersui-rpc-services"/>
 	<haxelib name="puremvc-standard"/>
 
 	<icon path="assets/icons/feathersui-icon.svg"/>
 
 	<assets path="assets/img" include="*"/>
+
+	<!-- copy the .xml files, but don't load them as assets -->
 	<assets path="assets/data" include="*" embed="false"/>
 </project>

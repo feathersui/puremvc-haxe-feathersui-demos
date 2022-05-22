@@ -7,7 +7,8 @@
 
 package org.puremvc.haxe.demos.feathersui.appskeleton.model;
 
-import openfl.events.ErrorEvent;
+import feathers.rpc.IResponder;
+import feathers.rpc.events.ResultEvent;
 import org.puremvc.haxe.demos.feathersui.appskeleton.model.business.LoadXMLDelegate;
 import org.puremvc.haxe.demos.feathersui.appskeleton.model.helpers.XmlResource;
 import org.puremvc.haxe.patterns.proxy.Proxy;
@@ -15,7 +16,7 @@ import org.puremvc.haxe.patterns.proxy.Proxy;
 /**
 	A proxy for read the resource file
 **/
-class LocaleProxy extends Proxy implements IResourceProxy {
+class LocaleProxy extends Proxy implements IResourceProxy implements IResponder {
 	public static final NAME = "LocaleProxy"; // Proxy name
 
 	// Notifications constants
@@ -54,7 +55,7 @@ class LocaleProxy extends Proxy implements IResourceProxy {
 
 			// create a worker who will go get some data
 			// pass it a reference to this proxy so the delegate knows where to return the data
-			var delegate = new LoadXMLDelegate(this.result, this.fault, url);
+			var delegate = new LoadXMLDelegate(this, url);
 			// make the delegate do some work
 			delegate.load();
 		} else {
@@ -67,9 +68,9 @@ class LocaleProxy extends Proxy implements IResourceProxy {
 
 		@param rpcEvent
 	**/
-	public function result(result:Xml):Void {
+	public function result(rpcEvent:Dynamic):Void {
 		// call the helper class for parse the XML data
-		XmlResource.parse(data, result);
+		XmlResource.parse(data, cast(rpcEvent, ResultEvent).result);
 
 		resourceLoaded();
 	}
