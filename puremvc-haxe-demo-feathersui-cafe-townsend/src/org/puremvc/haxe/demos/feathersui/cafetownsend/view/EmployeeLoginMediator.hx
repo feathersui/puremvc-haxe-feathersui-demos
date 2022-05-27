@@ -93,6 +93,7 @@ class EmployeeLoginMediator extends Mediator implements IMediator {
 		} else {
 			// if the auth info was incorrect, prompt with an alert box and remain on the login screen
 			Alert.show("Invaild username and/or password. Please try again.", "Login Failed", ["OK"]);
+			employeeLogin.resetLogin(false);
 		}
 	}
 

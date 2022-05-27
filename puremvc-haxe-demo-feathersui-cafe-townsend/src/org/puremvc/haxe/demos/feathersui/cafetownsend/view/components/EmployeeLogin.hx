@@ -38,11 +38,14 @@ class EmployeeLogin extends ScrollContainer {
 		super();
 	}
 
-	public function resetLogin():Void {
+	public function resetLogin(clear:Bool = true):Void {
 		username.enabled = true;
 		password.enabled = true;
-		username.text = "";
-		password.text = "";
+		login_btn.enabled = true;
+		if (clear) {
+			username.text = "";
+			password.text = "";
+		}
 	}
 
 	override private function initialize():Void {
@@ -101,6 +104,7 @@ class EmployeeLogin extends ScrollContainer {
 
 		username.enabled = false;
 		password.enabled = false;
+		login_btn.enabled = false;
 
 		// if everything validates, broadcast an event
 		dispatchEvent(new Event(APP_LOGIN));
