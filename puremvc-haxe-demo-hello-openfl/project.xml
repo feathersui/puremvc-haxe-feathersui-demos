@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<meta title="Hello OpenFL" package="com.feathersui.samples.puremvc.HelloOpenFL" version="1.0.0" company="Bowler Hat LLC"/>
+	<meta title="PureMVC Haxe Hello OpenFL Demo — Feathers UI Samples" if="html5"/>
+	<app main="HelloOpenFL" file="HelloOpenFL"/>
+
+	<window allow-high-dpi="true"/>
+	<window fps="60"/>
+	<window fps="0" if="html5"/>
+	
+	<source path="src"/>
+	
+	<haxelib name="openfl"/>
+	<haxelib name="puremvc-standard"/>
+
+	<icon path="assets/icons/feathersui-icon.svg"/>
+</project>
