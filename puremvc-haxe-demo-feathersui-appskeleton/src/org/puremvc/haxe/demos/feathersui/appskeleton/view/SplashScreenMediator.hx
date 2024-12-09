@@ -65,7 +65,8 @@ class SplashScreenMediator extends Mediator implements IMediator {
 		switch (note.getName()) {
 			case StartupMonitorProxy.LOADING_STEP:
 				// update the progress bar
-				this.splashScreen.pb.value = cast(note.getBody(), Int);
+				var progress = cast(note.getBody(), Float);
+				this.splashScreen.pb.value = Std.int(progress);
 
 			case StartupMonitorProxy.LOADING_COMPLETE:
 				// all done
