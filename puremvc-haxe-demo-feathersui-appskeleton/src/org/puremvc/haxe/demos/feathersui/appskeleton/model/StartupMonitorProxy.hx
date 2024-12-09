@@ -72,7 +72,7 @@ class StartupMonitorProxy extends Proxy implements IProxy {
 				r.loaded = true;
 				loadedResources++;
 				// send the notification for update the progress bar
-				sendNotification(StartupMonitorProxy.LOADING_STEP, (loadedResources * 100.0) / resourceList.length);
+				sendNotification(StartupMonitorProxy.LOADING_STEP, Math.round((loadedResources * 100.0) / resourceList.length));
 				// check if the process is completed
 				// if is not completed and the resources have blocked the process chain
 				// continue to read the other resources
