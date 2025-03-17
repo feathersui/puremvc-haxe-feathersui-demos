@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  samples-misc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.5
+      - name: Set up Haxelib dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install feathersui --quiet
+          haxelib install feathersui-rpc-services --quiet
+      - name: Build puremvc-haxe-demo-hello-openfl
+        working-directory: puremvc-haxe-demo-hello-openfl
+        run: |
+          haxelib run openfl build neko
+          haxelib run openfl build html5
+          haxelib run openfl build flash
+          haxelib run openfl build hl
+      - name: Build puremvc-haxe-demo-feathersui-appskeleton
+        working-directory: rpuremvc-haxe-demo-feathersui-appskeleton
+        run: |
+          haxelib run openfl build neko
+          haxelib run openfl build html5
+          haxelib run openfl build flash
+          haxelib run openfl build hl
+      - name: Build puremvc-haxe-demo-feathersui-todomvc
+        working-directory: puremvc-haxe-demo-feathersui-todomvc
+        run: |
+          haxelib run openfl build neko
+          haxelib run openfl build html5
+          haxelib run openfl build flash
+          haxelib run openfl build hl
+      - name: Build puremvc-haxe-demo-feathersui-cafe-townsend
+        working-directory: puremvc-haxe-demo-feathersui-cafe-townsend
+        run: |
+          haxelib run openfl build neko
+          haxelib run openfl build html5
+          haxelib run openfl build flash
+          haxelib run openfl build hl
+
+  samples-air:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: joshtynjala/setup-adobe-air-action@v2
+        with:
+          air-version: "33.1"
+          accept-license: true
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.5
+      - uses: actions/setup-java@v4
+        with:
+          java-version: "8"
+          distribution: "temurin"
+      - name: Set up Haxelib dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install feathersui --quiet
+          haxelib install feathersui-rpc-services --quiet
+          haxelib run lime config AIR_SDK ${{ env.AIR_HOME }}
+      - name: Build puremvc-haxe-demo-hello-openfl
+        working-directory: puremvc-haxe-demo-hello-openfl
+        run: |
+          haxelib run openfl build air
+      - name: Build puremvc-haxe-demo-feathersui-appskeleton
+        working-directory: rpuremvc-haxe-demo-feathersui-appskeleton
+        run: |
+          haxelib run openfl build air
+      - name: Build puremvc-haxe-demo-feathersui-todomvc
+        working-directory: puremvc-haxe-demo-feathersui-todomvc
+        run: |
+          haxelib run openfl build air
+      - name: Build puremvc-haxe-demo-feathersui-cafe-townsend
+        working-directory: puremvc-haxe-demo-feathersui-cafe-townsend
+        run: |
+          haxelib run openfl build air
