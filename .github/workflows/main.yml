@@ -20,6 +20,7 @@ jobs:
           haxelib install openfl --quiet
           haxelib install feathersui --quiet
           haxelib install feathersui-rpc-services --quiet
+          haxelib install puremvc-standard --quiet
       - name: Build puremvc-haxe-demo-hello-openfl
         working-directory: puremvc-haxe-demo-hello-openfl
         run: |
@@ -70,6 +71,7 @@ jobs:
           haxelib install openfl --quiet
           haxelib install feathersui --quiet
           haxelib install feathersui-rpc-services --quiet
+          haxelib install puremvc-standard --quiet
           haxelib run lime config AIR_SDK ${{ env.AIR_HOME }}
       - name: Build puremvc-haxe-demo-hello-openfl
         working-directory: puremvc-haxe-demo-hello-openfl
