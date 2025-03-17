@@ -29,7 +29,7 @@ jobs:
           haxelib run openfl build flash
           haxelib run openfl build hl
       - name: Build puremvc-haxe-demo-feathersui-appskeleton
-        working-directory: rpuremvc-haxe-demo-feathersui-appskeleton
+        working-directory: puremvc-haxe-demo-feathersui-appskeleton
         run: |
           haxelib run openfl build neko
           haxelib run openfl build html5
@@ -78,7 +78,7 @@ jobs:
         run: |
           haxelib run openfl build air
       - name: Build puremvc-haxe-demo-feathersui-appskeleton
-        working-directory: rpuremvc-haxe-demo-feathersui-appskeleton
+        working-directory: puremvc-haxe-demo-feathersui-appskeleton
         run: |
           haxelib run openfl build air
       - name: Build puremvc-haxe-demo-feathersui-todomvc
