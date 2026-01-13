@@ -10,8 +10,8 @@ jobs:
   samples-misc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: krdlab/setup-haxe@v1
+      - uses: actions/checkout@v6
+      - uses: krdlab/setup-haxe@v2
         with:
           haxe-version: 4.2.5
       - name: Set up Haxelib dependencies
@@ -53,15 +53,15 @@ jobs:
   samples-air:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: joshtynjala/setup-adobe-air-action@v2
         with:
           air-version: "33.1"
           accept-license: true
-      - uses: krdlab/setup-haxe@v1
+      - uses: krdlab/setup-haxe@v2
         with:
           haxe-version: 4.2.5
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           java-version: "8"
           distribution: "temurin"
