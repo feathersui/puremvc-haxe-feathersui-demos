@@ -42,6 +42,7 @@ class SplashScreen extends LayoutGroup {
 		layout = viewLayout;
 
 		var splashLoader = new AssetLoader("assets/img/splash.png");
+		splashLoader.layoutData = new VerticalLayoutData(50);
 		addChild(splashLoader);
 
 		pb = new HProgressBar();
@@ -53,13 +54,17 @@ class SplashScreen extends LayoutGroup {
 		var errorLayout = new HorizontalLayout();
 		errorLayout.gap = 8.0;
 		errorBox = new LayoutGroup();
+		errorBox.layout = errorLayout;
+		errorBox.layoutData = new VerticalLayoutData(100);
 		errorBox.visible = false;
 		addChild(errorBox);
 
 		var errorLoader = new AssetLoader("assets/img/error.png");
+		errorLoader.layoutData = new HorizontalLayoutData(2);
 		errorBox.addChild(errorLoader);
 
 		errorText = new Label();
+		errorText.layoutData = new HorizontalLayoutData(98);
 		errorBox.addChild(errorText);
 	}
 }
